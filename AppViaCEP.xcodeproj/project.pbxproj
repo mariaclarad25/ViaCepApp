@@ -51,6 +51,10 @@
 		B7CC7AD62E1BF0DB006227C3 /* AppViaCEP */ = {
 			isa = PBXGroup;
 			children = (
+				B7CC7AE62E1BF69D006227C3 /* Models */,
+				B7CC7AE72E1BF6AA006227C3 /* ViewModels */,
+				B7CC7AE52E1BF696006227C3 /* Views */,
+				B7CC7AE82E1BF6B3006227C3 /* Networking */,
 				B7CC7AD72E1BF0DB006227C3 /* AppViaCEPApp.swift */,
 				B7CC7AD92E1BF0DB006227C3 /* ContentView.swift */,
 				B7CC7ADB2E1BF0DE006227C3 /* Assets.xcassets */,
@@ -65,6 +69,34 @@
 				B7CC7ADE2E1BF0DE006227C3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B7CC7AE52E1BF696006227C3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B7CC7AE62E1BF69D006227C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B7CC7AE72E1BF6AA006227C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B7CC7AE82E1BF6B3006227C3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
