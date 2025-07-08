@@ -12,14 +12,13 @@ struct ContentView: View {
     @StateObject private var viewModel = CepViewModel()
     
     var body: some View {
-        VStack (spacing: 24) {
+        VStack (spacing: 24){
             
             Image(systemName: "map")
                 .resizable()
                 .frame(width: 75, height: 75)
                 .foregroundColor(Color(.colorBlue))
                 .padding(.top, 40)
-            
             
             Text("Digite seu CEP:")
                 .font(.title2)
@@ -30,10 +29,19 @@ struct ContentView: View {
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)
                 .foregroundColor(.black)
-                .padding(.bottom, 40)
+                .padding(.bottom, 35)
+            //executa a ação quando a variável muda - filtra e limita
+                .onChange(of: viewModel.cepTyped) { _, newValue in
+                    let filtered = newValue.filter { "0123456789".contains($0)}
+                    if filtered.count > 8 {
+                        viewModel.cepTyped = String(filtered.prefix(8))
+                    } else {
+                        viewModel.cepTyped = filtered
+                    }
+                }
             
             Button(action: {
-                print ("Buscar CEP: \(viewModel.cepTyped)")
+                viewModel.searchCEP()
             }, label: {
                 Text("Buscar")
             })
@@ -42,8 +50,8 @@ struct ContentView: View {
             .padding()
             .frame(maxWidth: .infinity)
             .background(.colorBlue)
-            .cornerRadius(6)
-        
+            .cornerRadius(8)
+            
             Spacer()
         }
         .padding()

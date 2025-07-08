@@ -7,23 +7,34 @@
 
 import Foundation
 
-class CepViewModel: ObservableObject {
+final class CepViewModel: ObservableObject {
     
-    @Published var cepTyped: String = "" {
-        didSet {
-            let numbers = cepTyped.filter {$0.isNumber}
-            let characterLimit = String(numbers.prefix(8))
-            let formatted = formattingCEP(characterLimit)
-            
-            if cepTyped != formatted {
-               cepTyped = formatted
-            }
+    @Published var cepTyped: String = ""
+    
+    func validCEP() -> Bool {
+        let numbers = cepTyped.filter {$0.isNumber}
+        
+        if numbers.count == 8 {
+            print ("CEP válido!")
+            return true
+        } else {
+            print ("CEP inválido!")
+            return false
         }
     }
+    
     func formattingCEP(_ text: String) -> String {
-        let numbers = text.filter { $0.isNumber }
-            let part1 = numbers.prefix(5)
-            let part2 = numbers.suffix(3)
-            return "\(part1)-\(part2)"
+        let part1 = text.prefix(5)
+        let part2 = text.suffix(3)
+        return "\(part1)-\(part2)"
+    }
+    
+    func searchCEP() {
+        if validCEP() {
+            cepTyped = formattingCEP(cepTyped.filter { $0.isNumber })
+            print ("Buscando: \(cepTyped)")
+        } else {
+            print ("Não foi possível realizar a busca.")
+        }
     }
 }
