@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		B7CC7AD82E1BF0DB006227C3 /* AppViaCEPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CC7AD72E1BF0DB006227C3 /* AppViaCEPApp.swift */; };
-		B7CC7ADA2E1BF0DB006227C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CC7AD92E1BF0DB006227C3 /* ContentView.swift */; };
+		B7CC7ADA2E1BF0DB006227C3 /* CepSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CC7AD92E1BF0DB006227C3 /* CepSearchView.swift */; };
 		B7CC7ADC2E1BF0DE006227C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7CC7ADB2E1BF0DE006227C3 /* Assets.xcassets */; };
 		B7CC7ADF2E1BF0DE006227C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7CC7ADE2E1BF0DE006227C3 /* Preview Assets.xcassets */; };
+		B7CC7AEA2E1C1733006227C3 /* CepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CC7AE92E1C1733006227C3 /* CepViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B7CC7AD42E1BF0DB006227C3 /* AppViaCEP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppViaCEP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CC7AD72E1BF0DB006227C3 /* AppViaCEPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViaCEPApp.swift; sourceTree = "<group>"; };
-		B7CC7AD92E1BF0DB006227C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B7CC7AD92E1BF0DB006227C3 /* CepSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CepSearchView.swift; sourceTree = "<group>"; };
 		B7CC7ADB2E1BF0DE006227C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7CC7ADE2E1BF0DE006227C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B7CC7AE92E1C1733006227C3 /* CepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CepViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +58,6 @@
 				B7CC7AE52E1BF696006227C3 /* Views */,
 				B7CC7AE82E1BF6B3006227C3 /* Networking */,
 				B7CC7AD72E1BF0DB006227C3 /* AppViaCEPApp.swift */,
-				B7CC7AD92E1BF0DB006227C3 /* ContentView.swift */,
 				B7CC7ADB2E1BF0DE006227C3 /* Assets.xcassets */,
 				B7CC7ADD2E1BF0DE006227C3 /* Preview Content */,
 			);
@@ -74,6 +75,7 @@
 		B7CC7AE52E1BF696006227C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B7CC7AD92E1BF0DB006227C3 /* CepSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -88,6 +90,7 @@
 		B7CC7AE72E1BF6AA006227C3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B7CC7AE92E1C1733006227C3 /* CepViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -169,7 +172,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7CC7ADA2E1BF0DB006227C3 /* ContentView.swift in Sources */,
+				B7CC7ADA2E1BF0DB006227C3 /* CepSearchView.swift in Sources */,
+				B7CC7AEA2E1C1733006227C3 /* CepViewModel.swift in Sources */,
 				B7CC7AD82E1BF0DB006227C3 /* AppViaCEPApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
