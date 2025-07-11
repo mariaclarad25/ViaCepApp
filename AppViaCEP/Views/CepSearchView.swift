@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CepSearchView: View {
     
     @StateObject private var viewModel = CepViewModel()
     
     var body: some View {
-        VStack (spacing: 24){
+        VStack(spacing: 24) {
             
             Image(systemName: "map")
                 .resizable()
@@ -59,5 +59,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    CepSearchView()
 }

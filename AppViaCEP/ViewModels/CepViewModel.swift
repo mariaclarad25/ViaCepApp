@@ -23,9 +23,15 @@ final class CepViewModel: ObservableObject {
         }
     }
     
-    func formattingCEP(_ text: String) -> String {
-        let part1 = text.prefix(5)
-        let part2 = text.suffix(3)
+    private func formattingCEP(_ text: String) -> String {
+        let numbers = text.filter {$0.isNumber}
+        
+        guard numbers.count == 8 else {
+            return ""
+        }
+        
+        let part1 = numbers.prefix(5)
+        let part2 = numbers.suffix(3)
         return "\(part1)-\(part2)"
     }
     
