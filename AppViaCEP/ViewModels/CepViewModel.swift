@@ -10,6 +10,9 @@ import Foundation
 final class CepViewModel: ObservableObject {
     
     @Published var cepTyped: String = ""
+    @Published var address: Address?
+    @Published var errorMessage: String?
+    @Published var isLoading: Bool = false
     
     func validCEP() -> Bool {
         let numbers = cepTyped.filter {$0.isNumber}
@@ -35,12 +38,43 @@ final class CepViewModel: ObservableObject {
         return "\(part1)-\(part2)"
     }
     
-    func searchCEP() {
+    @MainActor
+    func searchCEP() async {
         if validCEP() {
-            cepTyped = formattingCEP(cepTyped.filter { $0.isNumber })
-            print ("Buscando: \(cepTyped)")
+            errorMessage = nil
+            address = nil
+            isLoading = true
+            
+            let cleanCEP = cepTyped.filter { $0.isNumber }
+            cepTyped = formattingCEP(cleanCEP)
+            
+            do {
+                let result = try await requestAddress(for: cleanCEP)
+                address = result
+            } catch {
+                errorMessage = "Erro ao buscar o CEP: \(error.localizedDescription)"
+            }
+            
+            isLoading = false
         } else {
-            print ("Não foi possível realizar a busca.")
+            errorMessage = "CEP inválido. Digite 8 números."
+            address = nil
         }
+    }
+    
+    func requestAddress(for cep: String) async throws -> Address {
+        guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else {
+            throw URLError(.badURL)
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
+        let decoded = try JSONDecoder().decode(Address.self, from: data)
+        
+        if let erro = decoded.erro, erro == true {
+            throw NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "CEP não encontrado."])
+        }
+        
+        return decoded
     }
 }
