@@ -11,7 +11,7 @@ import SwiftUI
 struct AppViaCEPApp: App {
     var body: some Scene {
         WindowGroup {
-            CepSearchView()
+            InitialView()
         }
     }
 }
