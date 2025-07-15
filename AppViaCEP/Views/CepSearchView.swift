@@ -23,6 +23,7 @@ struct CepSearchView: View {
             Text("Digite seu CEP:")
                 .font(.title2)
                 .multilineTextAlignment(.center)
+                .foregroundColor(Color(.blueDark))
             
             TextField("00000-000", text: $viewModel.cepTyped)
                 .padding(12)
@@ -94,15 +95,31 @@ struct CepSearchView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
             }
-
+            
+            if viewModel.address != nil {
+                Button(action: {
+                    viewModel.cepTyped = ""
+                    viewModel.address = nil
+                    viewModel.errorMessage = nil
+                }) {
+                    Label ("Nova busca", systemImage: "arrow.clockwise")
+                }
+                .font(.headline)
+                .foregroundColor(Color(.blueDark))
+                .padding(.top, 12)
+            }
+            
             Spacer()
         }
         .padding()
+        .navigationBarBackButtonHidden(true)
+        
     }
 }
 
