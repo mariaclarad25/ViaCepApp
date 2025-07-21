@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class CepViewModel: ObservableObject {
     
     @Published var cepTyped: String = ""
@@ -38,7 +39,6 @@ final class CepViewModel: ObservableObject {
         return "\(part1)-\(part2)"
     }
     
-    @MainActor
     func searchCEP() async {
         if validCEP() {
             errorMessage = nil
@@ -62,7 +62,7 @@ final class CepViewModel: ObservableObject {
         }
     }
     
-    func requestAddress(for cep: String) async throws -> Address {
+    private func requestAddress(for cep: String) async throws -> Address {
         guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else {
             throw URLError(.badURL)
         }
