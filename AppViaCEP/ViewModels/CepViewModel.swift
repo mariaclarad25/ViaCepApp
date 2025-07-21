@@ -77,4 +77,10 @@ final class CepViewModel: ObservableObject {
         
         return decoded
     }
+    
+    func clearFields() {
+        cepTyped = ""
+        address = nil
+        errorMessage = nil
+    }
 }

@@ -104,9 +104,7 @@ struct CepSearchView: View {
             
             if viewModel.address != nil {
                 Button(action: {
-                    viewModel.cepTyped = ""
-                    viewModel.address = nil
-                    viewModel.errorMessage = nil
+                    viewModel.clearFields()
                 }) {
                     Label ("Nova busca", systemImage: "arrow.clockwise")
                 }
