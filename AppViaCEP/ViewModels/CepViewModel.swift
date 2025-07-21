@@ -49,7 +49,7 @@ final class CepViewModel: ObservableObject {
             cepTyped = formattingCEP(cleanCEP)
             
             do {
-                let result = try await requestAddress(for: cleanCEP)
+                let result = try await requestFetchAddress(for: cleanCEP)
                 address = result
             } catch {
                 errorMessage = "Erro ao buscar o CEP: \(error.localizedDescription)"
@@ -62,7 +62,7 @@ final class CepViewModel: ObservableObject {
         }
     }
     
-    private func requestAddress(for cep: String) async throws -> Address {
+    private func requestFetchAddress(for cep: String) async throws -> Address {
         guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else {
             throw URLError(.badURL)
         }

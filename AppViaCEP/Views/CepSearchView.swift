@@ -116,8 +116,6 @@ struct CepSearchView: View {
             Spacer()
         }
         .padding()
-        .navigationBarBackButtonHidden(true)
-        
     }
 }
 

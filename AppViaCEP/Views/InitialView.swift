@@ -25,7 +25,7 @@ struct InitialView: View {
                     .padding(.bottom, 20)
                 
                 NavigationLink(destination: CepSearchView()){
-                    Text ("Começar")
+                    Text ("Buscar endereço")
                         .font(.headline)
                         .foregroundStyle(.white)
                         .padding()
@@ -39,9 +39,26 @@ struct InitialView: View {
                         )
                         .cornerRadius(6)
                 }
-                .padding()
+                
+                NavigationLink(destination: AddressSearchView()){
+                    Text ("Buscar CEP")
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            LinearGradient(
+                                colors: [Color(.colorBlue), Color(.blueDark)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(6)
+                }
+                
                 Spacer()
             }
+            .padding()
             .background(
                 LinearGradient(
                     colors: [Color.white, Color(.systemBlue).opacity(0.3)],
@@ -55,6 +72,7 @@ struct InitialView: View {
             .toolbarBackground(Color(.colorBlue), for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
+        .tint(Color(.blueDark))
     }
 }
 

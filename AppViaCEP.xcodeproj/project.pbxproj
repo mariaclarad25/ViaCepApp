@@ -8,16 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		B70E10192E2674D8001E8868 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E10182E2674D8001E8868 /* InitialView.swift */; };
+		B79FED192E2A65B30073C7AB /* AddressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FED182E2A65B30073C7AB /* AddressCardView.swift */; };
 		B7C9F45A2E1FF0D9000A7499 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9F4592E1FF0D9000A7499 /* Address.swift */; };
 		B7CC7AD82E1BF0DB006227C3 /* AppViaCEPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CC7AD72E1BF0DB006227C3 /* AppViaCEPApp.swift */; };
 		B7CC7ADA2E1BF0DB006227C3 /* CepSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CC7AD92E1BF0DB006227C3 /* CepSearchView.swift */; };
 		B7CC7ADC2E1BF0DE006227C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7CC7ADB2E1BF0DE006227C3 /* Assets.xcassets */; };
 		B7CC7ADF2E1BF0DE006227C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7CC7ADE2E1BF0DE006227C3 /* Preview Assets.xcassets */; };
 		B7CC7AEA2E1C1733006227C3 /* CepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CC7AE92E1C1733006227C3 /* CepViewModel.swift */; };
+		B7D24D432E291D86005614FD /* AddressSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D24D422E291D86005614FD /* AddressSearchView.swift */; };
+		B7D24D452E2922A6005614FD /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D24D442E2922A6005614FD /* AddressViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B70E10182E2674D8001E8868 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
+		B79FED182E2A65B30073C7AB /* AddressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCardView.swift; sourceTree = "<group>"; };
 		B7C9F4592E1FF0D9000A7499 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		B7CC7AD42E1BF0DB006227C3 /* AppViaCEP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppViaCEP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CC7AD72E1BF0DB006227C3 /* AppViaCEPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViaCEPApp.swift; sourceTree = "<group>"; };
@@ -25,6 +29,8 @@
 		B7CC7ADB2E1BF0DE006227C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7CC7ADE2E1BF0DE006227C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B7CC7AE92E1C1733006227C3 /* CepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CepViewModel.swift; sourceTree = "<group>"; };
+		B7D24D422E291D86005614FD /* AddressSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchView.swift; sourceTree = "<group>"; };
+		B7D24D442E2922A6005614FD /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,8 @@
 			children = (
 				B7CC7AD92E1BF0DB006227C3 /* CepSearchView.swift */,
 				B70E10182E2674D8001E8868 /* InitialView.swift */,
+				B7D24D422E291D86005614FD /* AddressSearchView.swift */,
+				B79FED182E2A65B30073C7AB /* AddressCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -96,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				B7CC7AE92E1C1733006227C3 /* CepViewModel.swift */,
+				B7D24D442E2922A6005614FD /* AddressViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -170,11 +179,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D24D452E2922A6005614FD /* AddressViewModel.swift in Sources */,
 				B7CC7ADA2E1BF0DB006227C3 /* CepSearchView.swift in Sources */,
 				B7CC7AEA2E1C1733006227C3 /* CepViewModel.swift in Sources */,
+				B79FED192E2A65B30073C7AB /* AddressCardView.swift in Sources */,
 				B7C9F45A2E1FF0D9000A7499 /* Address.swift in Sources */,
 				B70E10192E2674D8001E8868 /* InitialView.swift in Sources */,
 				B7CC7AD82E1BF0DB006227C3 /* AppViaCEPApp.swift in Sources */,
+				B7D24D432E291D86005614FD /* AddressSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
