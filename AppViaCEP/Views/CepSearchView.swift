@@ -29,7 +29,6 @@ struct CepSearchView: View {
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)
                 .foregroundColor(.black)
-                .padding(.bottom, 35)
             //executa a ação quando a variável muda - filtra e limita
                 .onChange(of: viewModel.cepTyped) { _, newValue in
                     let filtered = newValue.filter { "0123456789".contains($0)}
@@ -40,8 +39,17 @@ struct CepSearchView: View {
                     }
                 }
             
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+            }
+            
             Button(action: {
-                viewModel.searchCEP()
+                Task {
+                    await viewModel.searchCEP()
+                }
             }, label: {
                 Text("Buscar")
             })
@@ -52,6 +60,46 @@ struct CepSearchView: View {
             .background(.colorBlue)
             .cornerRadius(8)
             
+            if let address = viewModel.address {
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Image(systemName: "house.fill")
+                            .foregroundColor(.blue)
+                        Text("Rua: \(address.logradouro)")
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Image(systemName: "mappin.and.ellipse")
+                            .foregroundColor(.red)
+                        Text("Bairro: \(address.bairro)")
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Image(systemName: "building.2.fill")
+                            .foregroundColor(.green)
+                        Text("Cidade: \(address.localidade)")
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "flag.fill")
+                            .foregroundColor(.orange)
+                        Text("UF: \(address.uf)")
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+            }
+
             Spacer()
         }
         .padding()
