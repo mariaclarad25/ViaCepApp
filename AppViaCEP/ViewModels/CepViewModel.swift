@@ -83,4 +83,16 @@ final class CepViewModel: ObservableObject {
         address = nil
         errorMessage = nil
     }
+    
+    func getIBGEURL(for address: Address) -> URL? {
+        let cidade = address.localidade
+            .folding(options: .diacriticInsensitive, locale: .current)
+            .lowercased()
+            .replacingOccurrences(of: " ", with: "-")
+        
+        let uf = address.uf.lowercased()
+        let urlString = "https://cidades.ibge.gov.br/brasil/\(uf)/\(cidade)/panorama"
+        
+        return URL(string: urlString)
+    }
 }

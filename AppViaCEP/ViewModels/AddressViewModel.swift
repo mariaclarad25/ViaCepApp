@@ -87,4 +87,16 @@ final class AddressViewModel: ObservableObject {
         self.isLoading = false
         
     }
+    
+    func getIBGEURL(for address: Address) -> URL? {
+        let cidade = address.localidade
+            .folding(options: .diacriticInsensitive, locale: .current) //remove acento e cedilha
+            .lowercased() //letra minuscula
+            .replacingOccurrences(of: " ", with: "-")
+        
+        let uf = address.uf.lowercased()
+        let urlString = "https://cidades.ibge.gov.br/brasil/\(uf)/\(cidade)/panorama"
+        
+        return URL(string: urlString)
+    }
 }

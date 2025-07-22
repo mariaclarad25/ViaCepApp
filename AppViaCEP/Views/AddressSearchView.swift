@@ -16,17 +16,17 @@ struct AddressSearchView: View {
             VStack(spacing: 24) {
                 
                 if viewModelAddress.address.isEmpty {
-                
-                Image(systemName: "map")
-                    .resizable()
-                    .frame(width: 75, height: 75)
-                    .foregroundColor(Color(.colorBlue))
-                    .padding(.top, 40)
                     
-                Text("Digite seu endereço:")
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(Color(.blueDark))
+                    Image(systemName: "map")
+                        .resizable()
+                        .frame(width: 75, height: 75)
+                        .foregroundColor(Color(.colorBlue))
+                        .padding(.top, 40)
+                    
+                    Text("Digite seu endereço:")
+                        .font(.title2)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(.blueDark))
                     
                     TextField("Localidade/UF", text: $viewModelAddress.uf)
                         .styleTextField()
@@ -85,22 +85,34 @@ struct AddressSearchView: View {
                     ForEach(viewModelAddress.address, id: \.cep) { address in
                         AddressCardView(address: address)
                     }
-                }
-                
-                if !viewModelAddress.address.isEmpty || viewModelAddress.errorMessage != nil {
-                    Button(action: {
-                        viewModelAddress.clearFields()
-                    }) {
-                        Label ("Nova busca", systemImage: "arrow.clockwise")
+                    
+                    // MARK: - IBGE
+                    if let address = viewModelAddress.address.first,
+                       let ibgeURL = viewModelAddress.getIBGEURL(for: address) {
+                        
+                        Link(destination: ibgeURL) {
+                            Text("Ver mais sobre \(address.localidade) no IBGE")
+                                .font(.body)
+                                .foregroundColor(.blue)
+                                .padding(.top, 3)
+                        }
                     }
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color(.blueDark))
-                    .padding(.bottom, 20)
+                    //
+                    if !viewModelAddress.address.isEmpty || viewModelAddress.errorMessage != nil {
+                        Button(action: {
+                            viewModelAddress.clearFields()
+                        }) {
+                            Label ("Nova busca", systemImage: "arrow.clockwise")
+                        }
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color(.blueDark))
+                        .padding(.bottom, 20)
+                    }
                 }
             }
+            .padding()
         }
-        .padding()
     }
 }
 

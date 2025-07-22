@@ -102,6 +102,16 @@ struct CepSearchView: View {
                 .cornerRadius(10)
             }
             
+        // MARK: - IBGE
+            if let address = viewModel.address,
+               let ibgeURL = viewModel.getIBGEURL(for: address) {
+                Link("Ver mais sobre \(address.localidade) no IBGE",
+                     destination: ibgeURL)
+                    .font(.body)
+                    .foregroundColor(.blue)
+                    .padding(.top, 3)
+            }
+        //
             if viewModel.address != nil {
                 Button(action: {
                     viewModel.clearFields()
