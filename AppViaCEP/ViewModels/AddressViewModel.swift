@@ -38,7 +38,7 @@ final class AddressViewModel: ObservableObject {
             self.isLoading = false
             
         } catch {
-            handleError("Erro ao buscar o endereço: \(error.localizedDescription)")
+            handleError("Ocorreu um erro ao buscar o endereço. Tente novamente.")
         }
     }
     
@@ -62,7 +62,7 @@ final class AddressViewModel: ObservableObject {
         let decoded = try JSONDecoder().decode([Address].self, from: data)
         
         if decoded.isEmpty {
-            throw NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Endereço não encontrado."])
+            throw URLError(.badServerResponse)
         }
         return decoded
     }
@@ -85,7 +85,6 @@ final class AddressViewModel: ObservableObject {
         self.errorMessage = message
         self.address = []
         self.isLoading = false
-        
     }
     
     func getIBGEURL(for address: Address) -> URL? {

@@ -18,41 +18,23 @@ struct InitialView: View {
                     .scaledToFit()
                     .frame(width: 320, height: 320)
                 
-                Text("Bem-vindo ao BuscaCEP")
+                Text("Bem-vindo ao Wayfind")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .foregroundStyle(.colorBlue)
                     .padding(.bottom, 20)
                 
                 NavigationLink(destination: CepSearchView()){
-                    Text ("Buscar endereço")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            LinearGradient(
-                                colors: [Color(.colorBlue), Color(.blueDark)],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
+                    Text ("Busque por CEP")
+                        .styleButton()
+                        .styleGradientBlue()
                         .cornerRadius(6)
                 }
                 
                 NavigationLink(destination: AddressSearchView()){
-                    Text ("Buscar CEP")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            LinearGradient(
-                                colors: [Color(.colorBlue), Color(.blueDark)],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
+                    Text("Busque por endereço")
+                        .styleButton()
+                        .styleGradientBlue()
                         .cornerRadius(6)
                 }
                 
@@ -66,7 +48,7 @@ struct InitialView: View {
                     endPoint: .bottom
                 )
             )
-            .navigationTitle("BuscaCEP")
+            .navigationTitle("Wayfind")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color(.colorBlue), for: .navigationBar)

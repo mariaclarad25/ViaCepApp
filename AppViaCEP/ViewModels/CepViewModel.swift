@@ -19,10 +19,8 @@ final class CepViewModel: ObservableObject {
         let numbers = cepTyped.filter {$0.isNumber}
         
         if numbers.count == 8 {
-            print ("CEP válido!")
             return true
         } else {
-            print ("CEP inválido!")
             return false
         }
     }
@@ -52,7 +50,7 @@ final class CepViewModel: ObservableObject {
                 let result = try await requestFetchAddress(for: cleanCEP)
                 address = result
             } catch {
-                errorMessage = "Erro ao buscar o CEP: \(error.localizedDescription)"
+                errorMessage = "Ocorreu um erro ao buscar o CEP. Tente novamente."
             }
             
             isLoading = false
@@ -72,7 +70,7 @@ final class CepViewModel: ObservableObject {
         let decoded = try JSONDecoder().decode(Address.self, from: data)
         
         if let erro = decoded.erro, erro == true {
-            throw NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "CEP não encontrado."])
+            throw URLError(.badServerResponse)
         }
         
         return decoded
