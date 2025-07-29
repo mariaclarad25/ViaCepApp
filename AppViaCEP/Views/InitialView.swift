@@ -18,30 +18,29 @@ struct InitialView: View {
                     .scaledToFit()
                     .frame(width: 320, height: 320)
                 
-                Text("Bem-vindo ao BuscaCEP")
+                Text("Bem-vindo ao Wayfind")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .foregroundStyle(.colorBlue)
                     .padding(.bottom, 20)
                 
                 NavigationLink(destination: CepSearchView()){
-                    Text ("Começar")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            LinearGradient(
-                                colors: [Color(.colorBlue), Color(.blueDark)],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
+                    Text ("Busque por CEP")
+                        .styleButton()
+                        .styleGradientBlue()
                         .cornerRadius(6)
                 }
-                .padding()
+                
+                NavigationLink(destination: AddressSearchView()){
+                    Text("Busque por endereço")
+                        .styleButton()
+                        .styleGradientBlue()
+                        .cornerRadius(6)
+                }
+                
                 Spacer()
             }
+            .padding()
             .background(
                 LinearGradient(
                     colors: [Color.white, Color(.systemBlue).opacity(0.3)],
@@ -49,12 +48,13 @@ struct InitialView: View {
                     endPoint: .bottom
                 )
             )
-            .navigationTitle("BuscaCEP")
+            .navigationTitle("Wayfind")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color(.colorBlue), for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
+        .tint(Color(.blueDark))
     }
 }
 

@@ -19,10 +19,8 @@ final class CepViewModel: ObservableObject {
         let numbers = cepTyped.filter {$0.isNumber}
         
         if numbers.count == 8 {
-            print ("CEP válido!")
             return true
         } else {
-            print ("CEP inválido!")
             return false
         }
     }
@@ -49,10 +47,10 @@ final class CepViewModel: ObservableObject {
             cepTyped = formattingCEP(cleanCEP)
             
             do {
-                let result = try await requestAddress(for: cleanCEP)
+                let result = try await requestFetchAddress(for: cleanCEP)
                 address = result
             } catch {
-                errorMessage = "Erro ao buscar o CEP: \(error.localizedDescription)"
+                errorMessage = "Ocorreu um erro ao buscar o CEP. Tente novamente."
             }
             
             isLoading = false
@@ -62,7 +60,7 @@ final class CepViewModel: ObservableObject {
         }
     }
     
-    private func requestAddress(for cep: String) async throws -> Address {
+    private func requestFetchAddress(for cep: String) async throws -> Address {
         guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else {
             throw URLError(.badURL)
         }
@@ -72,7 +70,7 @@ final class CepViewModel: ObservableObject {
         let decoded = try JSONDecoder().decode(Address.self, from: data)
         
         if let erro = decoded.erro, erro == true {
-            throw NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "CEP não encontrado."])
+            throw URLError(.badServerResponse)
         }
         
         return decoded
@@ -82,5 +80,17 @@ final class CepViewModel: ObservableObject {
         cepTyped = ""
         address = nil
         errorMessage = nil
+    }
+    
+    func getIBGEURL(for address: Address) -> URL? {
+        let cidade = address.localidade
+            .folding(options: .diacriticInsensitive, locale: .current)
+            .lowercased()
+            .replacingOccurrences(of: " ", with: "-")
+        
+        let uf = address.uf.lowercased()
+        let urlString = "https://cidades.ibge.gov.br/brasil/\(uf)/\(cidade)/panorama"
+        
+        return URL(string: urlString)
     }
 }
